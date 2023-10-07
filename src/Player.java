@@ -23,7 +23,7 @@ public class Player {
             System.out.println("======================");
         } else {
             random();
-            if(monster.hp <= 30) {
+            if(monster.hp <= 80) {
                 System.out.println("======================");
                 if(haveSword == true) {
                     System.out.println("Você usou a sua espada de esmeralda.");
@@ -31,9 +31,22 @@ public class Player {
                     monster.setHp((int) (monster.hp-monster.hp*2.30));
                 } else {
                     System.out.println("Tirou: " + monster.hp);
-                    monster.setHp(monster.hp-monster.hp);
                 }
+                monster.setHp(monster.hp-monster.hp);
                 System.out.println("Você matou o " + monster.getName());
+                if(monster.name == "Zombie") {
+                    xp += 250;
+                    coins += 125;
+                    System.out.println("Você recebeu 250 de XP e 125 moedas por derrotar o Zombie.");
+                } else if(monster.name == "Slime") {
+                    xp += 500;
+                    coins += 250;
+                    System.out.println("Você recebeu 500 de XP e 250 moedas por derrotar a Slime.");
+                } else if(monster.name == "Wither") {
+                    xp += 700;
+                    coins += 350;
+                    System.out.println("Você recebeu 700 de XP e 350 moedas por derrotar o Wither.");
+                }
                 if(xpMultiplier > 2) {
                     xp += (float) (5 + xpMultiplier);
                     System.out.println("Ganhou: " + (5 * xpMultiplier) + " de xp.");
