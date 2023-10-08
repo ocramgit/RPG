@@ -2,6 +2,7 @@ public class Monster {
 
     String name;
     int hp;
+    int damageMultiplier = 1;
 
     public Monster(String name, int hp) {
         this.name = name;
@@ -20,9 +21,9 @@ public class Monster {
         if(hp > 0) {
             if (player.hp > 9) {
                 int rd = randomNumber();
-                player.hp -= rd;
+                player.hp -= rd*damageMultiplier;
                 System.out.println("Sua vida: " + player.hp);
-                System.out.println("Você sofreu um golpe de " + rd + " de vida!");
+                System.out.println("Você sofreu um golpe de " + rd*damageMultiplier + " de vida!");
                 System.out.println("======================");
             } else {
                 player.hp = player.hp - 9;
