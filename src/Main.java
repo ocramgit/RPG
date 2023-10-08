@@ -4,6 +4,7 @@ public class Main {
         GameCore game = new GameCore();
         game.start();
 
+        System.out.println("teste");
     }
 
 }
