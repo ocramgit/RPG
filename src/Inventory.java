@@ -8,12 +8,16 @@ public class Inventory {
 
     public void check(Player player) {
         System.out.println("====================");
-        if(player.haveSword) {
-            System.out.println("[Espada de Esmeralda]");
+            if(player.haveSword) {
+                if(player.damageMultiplier == 2.30) {
+                    System.out.println("\uD83D\uDDE1 1x Espada de Esmeralda");
+                } else {
+                    System.out.println("\uD83D\uDDE1 1x Espada de Esmeralda Encantada");
+                }
         }
 
         if(player.magicPowder > 0) {
-            System.out.println("[" + player.magicPowder + " de pó mágico]");
+            System.out.println("\uD83D\uDD2E " + player.magicPowder + "x pó mágico");
         }
 
         if(!player.haveSword) {

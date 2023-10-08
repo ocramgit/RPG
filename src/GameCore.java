@@ -30,12 +30,10 @@ public class GameCore {
             System.out.println("1 - Atacar Zombie [Fácil]");
             System.out.println("2 - Atacar Slime [Mediano]");
             System.out.println("3 - Atacar Wither [Dificíl]");
-            System.out.println("4 - Inventário");
-            System.out.println("5 - Consultar XP");
-            System.out.println("6 - Consultar Moedas");
-            System.out.println("7 - Consultar vida");
-            System.out.println("8 - Loja");
-            System.out.println("9 - Sair do Jogo");
+            System.out.println("4 - Status");
+            System.out.println("5 - Inventário");
+            System.out.println("6 - Loja");
+            System.out.println("7 - Sair do Jogo");
             System.out.println(" ");
             System.out.print("Selecione o que fazer: ");
 
@@ -54,18 +52,12 @@ public class GameCore {
                         wither.autoAttack(player);
                         break;
                     case 4:
-                        inventory.check(player);
+                        profile(player);
                         break;
                     case 5:
-                        System.out.println("O teu xp é: " + player.getXp());
+                        inventory.check(player);
                         break;
                     case 6:
-                        System.out.println("Tens " + player.coins + " moedas.");
-                        break;
-                    case 7:
-                        System.out.println("Sua vida: " + player.hp);
-                        break;
-                    case 8:
                         System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + player.getXp()+")" + " - (Suas moedas: " + player.coins + ")" + " - (Seu pó mágico: "+ player.magicPowder+")");
                         System.out.println("1 - Comprar XP Multiplier (100 XP)");
                         System.out.println("2 - Comprar VIDA (50 XP)");
@@ -77,7 +69,7 @@ public class GameCore {
                         System.out.println("8 - Sair da Loja");
                         System.out.print("Resposta: ");
                         menuShop();
-                    case 9:
+                    case 7:
                         playerIsDead = true;
                         break;
                     case 111:
@@ -128,6 +120,40 @@ public class GameCore {
                 start();
                 break;
         }
+    }
+
+    public void profile(Player player) {
+        System.out.println("❤\uFE0F " + player.hp + " (VIDA)");
+        System.out.println("✨ " + player.xp + " (XP)");
+        System.out.println("\uD83E\uDD5E " + player.coins + " (MOEDAS)");
+        System.out.println("");
+        if(zombie.hp <= 0) {
+            System.out.println("Zombie: ✅");
+        } else {
+            System.out.println("Zombie: ❌");
+        }
+        if(slime.hp <= 0) {
+            System.out.println("Slime: ✅");
+        } else {
+            System.out.println("Slime: ❌");
+        }
+        if(wither.hp <= 0) {
+            System.out.println("Wither: ✅");
+        } else {
+            System.out.println("Wither: ❌");
+        }
+        System.out.println("");
+        if(player.xpMultiplier == 0) {
+            System.out.println("XP Multiplier: ❌");
+        } else {
+            System.out.println("XP Multiplier: ✅");
+        }
+        if(player.damageMultiplier == 2.30) {
+            System.out.println("Espada encantada: ❌");
+        } else {
+            System.out.println("Espada encantada: ✅");
+        }
+        start();
     }
 
     public void checkIfPlayerIsDead(Player player) {
