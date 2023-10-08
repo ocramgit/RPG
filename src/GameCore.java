@@ -28,11 +28,12 @@ public class GameCore {
             System.out.println("1 - Atacar Zombie [Fácil]");
             System.out.println("2 - Atacar Slime [Mediano]");
             System.out.println("3 - Atacar Wither [Dificíl]");
-            System.out.println("4 - Consultar XP");
-            System.out.println("5 - Consultar Moedas");
-            System.out.println("6 - Consultar vida");
-            System.out.println("7 - Loja");
-            System.out.println("8 - Sair do Jogo");
+            System.out.println("4 - Inventário");
+            System.out.println("5 - Consultar XP");
+            System.out.println("6 - Consultar Moedas");
+            System.out.println("7 - Consultar vida");
+            System.out.println("8 - Loja");
+            System.out.println("9 - Sair do Jogo");
             System.out.println(" ");
             System.out.print("Selecione o que fazer: ");
 
@@ -51,15 +52,18 @@ public class GameCore {
                         wither.autoAttack(player);
                         break;
                     case 4:
-                        System.out.println("O teu xp é: " + player.getXp());
+                        player.inventory.check();
                         break;
                     case 5:
-                        System.out.println("Tens " + player.coins + " moedas.");
+                        System.out.println("O teu xp é: " + player.getXp());
                         break;
                     case 6:
-                        System.out.println("Sua vida: " + player.hp);
+                        System.out.println("Tens " + player.coins + " moedas.");
                         break;
                     case 7:
+                        System.out.println("Sua vida: " + player.hp);
+                        break;
+                    case 8:
                         System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + player.getXp()+")" + " - (Suas moedas: " + player.coins + ")");
                         System.out.println("1 - Comprar XP Multiplier (100 XP)");
                         System.out.println("2 - Comprar VIDA (50 XP)");
@@ -69,8 +73,9 @@ public class GameCore {
                         System.out.println("6 - Sair da Loja");
                         System.out.print("Resposta: ");
                         menuShop();
-                    case 8:
+                    case 9:
                         playerIsDead = true;
+                        break;
                     case 0:
                         player.xp = 1000;
                         player.coins = 1000;

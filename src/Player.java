@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-public class Player {
+public class Player{
 
     String name;
     GameCore gameCore;
@@ -9,12 +7,16 @@ public class Player {
     float xp;
     double xpMultiplier = 0;
     double coins;
+    Inventory inventory;
 
     int random;
 
     public Player(String name, GameCore gameCore) {
         this.name = name;
         this.gameCore = gameCore;
+
+        inventory = new Inventory(this);
+
     }
 
     public void attack(Monster monster) {
@@ -27,14 +29,6 @@ public class Player {
 
     public void setHp(int hp) {
         this.hp = hp;
-    }
-
-    public void setCoins(double coins) {
-        this.coins = coins;
-    }
-
-    public void setXp(float xp) {
-        this.xp = xp;
     }
 
     public void random() {
