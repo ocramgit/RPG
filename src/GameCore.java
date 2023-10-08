@@ -7,6 +7,7 @@ public class GameCore {
     Monster slime;
     Monster wither;
     Shop shop;
+    Inventory inventory;
 
     boolean playerIsDead = false;
 
@@ -19,6 +20,7 @@ public class GameCore {
         slime = new Monster("Slime", 2100);
         wither = new Monster("Wither", 4900);
         shop = new Shop();
+        inventory = new Inventory(player);
 
     }
 
@@ -52,7 +54,7 @@ public class GameCore {
                         wither.autoAttack(player);
                         break;
                     case 4:
-                        player.inventory.check();
+                        inventory.check(player);
                         break;
                     case 5:
                         System.out.println("O teu xp é: " + player.getXp());
@@ -64,21 +66,25 @@ public class GameCore {
                         System.out.println("Sua vida: " + player.hp);
                         break;
                     case 8:
-                        System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + player.getXp()+")" + " - (Suas moedas: " + player.coins + ")");
+                        System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + player.getXp()+")" + " - (Suas moedas: " + player.coins + ")" + " - (Seu pó mágico: "+ player.magicPowder+")");
                         System.out.println("1 - Comprar XP Multiplier (100 XP)");
                         System.out.println("2 - Comprar VIDA (50 XP)");
                         System.out.println("3 - Converter XP em Moedas (2 XP cada)");
                         System.out.println("4 - Comprar Espada de Esmeralda (75 Moedas)");
                         System.out.println("5 - Vender Espada de Esmeralda (60 Moedas)");
-                        System.out.println("6 - Sair da Loja");
+                        System.out.println("6 - Comprar pó mágico (17 Moedas cada)");
+                        System.out.println("7 - Encantar espada (15 de pó mágico)");
+                        System.out.println("8 - Sair da Loja");
                         System.out.print("Resposta: ");
                         menuShop();
                     case 9:
                         playerIsDead = true;
                         break;
-                    case 0:
-                        player.xp = 1000;
-                        player.coins = 1000;
+                    case 111:
+                        player.xp += 1000;
+                        player.coins += 1000;
+                        player.magicPowder += 1000;
+                        System.out.println("Cheat usado!");
                 }
 
             checkIfPlayerIsDead(player);
@@ -108,8 +114,15 @@ public class GameCore {
                 start();
                 break;
             case 6:
+                shop.buyMagicPowder(player, 17);
                 start();
                 break;
+            case 7:
+                shop.enchantSword(player);
+                start();
+                break;
+            case 8:
+                start();
             default:
                 System.out.println("Número inválido.");
                 start();
@@ -135,8 +148,9 @@ public class GameCore {
                 System.out.println("======================");
                 if(player.haveSword == true) {
                     System.out.println("Você usou a sua espada de esmeralda.");
-                    System.out.println("Tirou: " + monster.hp*2.30);
-                    monster.setHp((int) (monster.hp-monster.hp*2.30));
+                    System.out.printf("Tirou: %.2f", monster.hp*player.damageMultiplier);
+                    System.out.println();
+                    monster.setHp((int) (monster.hp-monster.hp*player.damageMultiplier));
                 } else {
                     System.out.println("Tirou: " + monster.hp);
                 }
@@ -157,7 +171,7 @@ public class GameCore {
                 }
                 if(player.xpMultiplier > 2) {
                     player.xp += (float) (5 + player.xpMultiplier);
-                    System.out.println("Ganhou: " + (5 * player.xpMultiplier) + " de xp.");
+                    System.out.println("Ganhou: " + (5 * player.xpMultiplier) + " de XP.");
                     System.out.println("BUFF de XP: ATIVADO");
                 } else {
                     System.out.println("Ganhou: " + 5 + " de xp.");
@@ -169,15 +183,16 @@ public class GameCore {
                 System.out.println("======================");
                 if(player.haveSword == true) {
                     System.out.println("Você usou a sua espada de esmeralda.");
-                    System.out.println("Tirou: " + player.random*2.30);
-                    monster.setHp((int) (monster.hp-player.random*2.30));
+                    System.out.printf("Tirou: %.2f", player.random*player.damageMultiplier);
+                    System.out.println();
+                    monster.setHp((int) (monster.hp-player.random*player.damageMultiplier));
                 } else {
                     System.out.println("Tirou: " + player.random);
                     monster.setHp(monster.hp-player.random);
                 }
                 if(player.xpMultiplier > 2) {
                     player.xp += (float) (5 + player.xpMultiplier);
-                    System.out.println("Ganhou: " + 5*player.xpMultiplier + " de xp.");
+                    System.out.println("Ganhou: " + 5*player.xpMultiplier + " de XP.");
                     System.out.println("BUFF de XP: ATIVADO");
                 } else {
                     System.out.println("Ganhou: " + 5 + " de xp.");

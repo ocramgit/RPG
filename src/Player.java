@@ -7,16 +7,14 @@ public class Player{
     float xp;
     double xpMultiplier = 0;
     double coins;
-    Inventory inventory;
+    int magicPowder = 0;
+    double damageMultiplier = 2.30;
 
     int random;
 
     public Player(String name, GameCore gameCore) {
         this.name = name;
         this.gameCore = gameCore;
-
-        inventory = new Inventory(this);
-
     }
 
     public void attack(Monster monster) {

@@ -6,16 +6,23 @@ public class Inventory {
         this.player = player;
     }
 
-    public void check() {
+    public void check(Player player) {
+        System.out.println("====================");
         if(player.haveSword) {
-            System.out.println("=======================");
             System.out.println("[Espada de Esmeralda]");
-            System.out.println("=======================");
+        }
+
+        if(player.magicPowder > 0) {
+            System.out.println("[" + player.magicPowder + " de pó mágico]");
         }
 
         if(!player.haveSword) {
-            System.out.println("Inventário vazio.");
+            if(player.magicPowder == 0) {
+                System.out.println("Inventário vazio.");
+            }
         }
+        System.out.println("====================");
+
     }
 
 }
