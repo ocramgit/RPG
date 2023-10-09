@@ -1,4 +1,4 @@
-public class Player{
+public class Player {
 
     String name;
     GameCore gameCore;
@@ -9,6 +9,7 @@ public class Player{
     double coins;
     int magicPowder = 0;
     double damageMultiplier = 2.30;
+    int armour = 0;
 
     int random;
 

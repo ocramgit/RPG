@@ -89,4 +89,17 @@ public class Shop {
         }
     }
 
+    public void buyArmour(Player player, int price) {
+            if (player.xp >= 200) {
+                if (player.armour < 100) {
+                player.armour = 100;
+                System.out.println("Você comprou uma armadura.");
+            } else {
+                    System.out.println("A sua armadura já está completa.");
+                }
+        } else {
+                System.out.println("Você não tem dinheiro suficiente!");
+            }
+    }
+
  }

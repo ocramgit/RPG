@@ -78,12 +78,13 @@ public class GameCore {
                         System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + player.getXp()+")" + " - (Suas moedas: " + player.coins + ")" + " - (Seu pó mágico: "+ player.magicPowder+")");
                         System.out.println("1 - Comprar XP Multiplier (100 XP)");
                         System.out.println("2 - Comprar VIDA (50 XP)");
-                        System.out.println("3 - Converter XP em Moedas (2 XP cada)");
-                        System.out.println("4 - Comprar Espada de Esmeralda (75 Moedas)");
-                        System.out.println("5 - Vender Espada de Esmeralda (60 Moedas)");
-                        System.out.println("6 - Comprar pó mágico (17 Moedas cada)");
-                        System.out.println("7 - Encantar espada (15 de pó mágico)");
-                        System.out.println("8 - Sair da Loja");
+                        System.out.println("3 - Comprar Armadura (150 XP)");
+                        System.out.println("4 - Converter XP em Moedas (2 XP cada)");
+                        System.out.println("5 - Comprar Espada de Esmeralda (75 Moedas)");
+                        System.out.println("6 - Vender Espada de Esmeralda (60 Moedas)");
+                        System.out.println("7 - Comprar pó mágico (17 Moedas cada)");
+                        System.out.println("8 - Encantar espada (15 de pó mágico)");
+                        System.out.println("9 - Sair da Loja");
                         System.out.print("Resposta: ");
                         menuShop();
                     case 8:
@@ -119,26 +120,30 @@ public class GameCore {
                 start();
                 break;
             case 3:
-                shop.buyCoins(player);
+                shop.buyArmour(player, 200);
                 start();
                 break;
             case 4:
-                shop.buySword(player, 75);
+                shop.buyCoins(player);
                 start();
                 break;
             case 5:
-                shop.sellSword(player);
+                shop.buySword(player, 75);
                 start();
                 break;
             case 6:
-                shop.buyMagicPowder(player, 17);
+                shop.sellSword(player);
                 start();
                 break;
             case 7:
-                shop.enchantSword(player);
+                shop.buyMagicPowder(player, 17);
                 start();
                 break;
             case 8:
+                shop.enchantSword(player);
+                start();
+                break;
+            case 9:
                 start();
                 break;
             default:
@@ -151,6 +156,7 @@ public class GameCore {
     public void profile(Player player) {
         System.out.println("❤\uFE0F " + player.hp + " (VIDA)");
         System.out.println("✨ " + player.xp + " (XP)");
+        System.out.println("\uD83D\uDEE1\uFE0F " + player.armour + " % (ARMADURA)");
         System.out.println("\uD83E\uDD5E " + player.coins + " (MOEDAS)");
         System.out.println("");
         if(zombie.hp <= 0) {
