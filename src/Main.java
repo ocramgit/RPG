@@ -5,5 +5,4 @@ public class Main {
         GameCore game = new GameCore();
         game.start();
     }
-
 }

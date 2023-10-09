@@ -64,7 +64,6 @@ public class Dungeon {
 
             int choice = sc.nextInt();
 
-
             switch (choice) {
                 case 1:
                     player.attack(flying_Tiger);
@@ -77,6 +76,7 @@ public class Dungeon {
                     System.out.println("Você desistiu da dungeon.");
                     flying_Tiger.hp = 2300;
                     gameCore.start();
+                    break;
                 default:
                     System.out.println("Número inválido.");
                     levelOne();

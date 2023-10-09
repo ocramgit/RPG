@@ -82,6 +82,7 @@ public class GameCore {
                         menuShop();
                     case 8:
                         playerIsDead = true;
+                        checkIfPlayerIsDead(player);
                         break;
                     case 111:
                         player.xp += 1000;
@@ -89,6 +90,11 @@ public class GameCore {
                         player.magicPowder += 1000;
                         System.out.println("Cheat usado!");
                         break;
+                    default:
+                        System.out.println("Número inválido.");
+                        start();
+                        break;
+
                 }
 
             checkIfPlayerIsDead(player);
