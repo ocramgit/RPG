@@ -93,7 +93,7 @@ public class Shop {
             if (player.xp >= 200) {
                 if (player.armour < 100) {
                 player.armour = 100;
-                System.out.println("Você comprou uma armadura.");
+                System.out.println("Você comprou ou reparou a armadura.");
             } else {
                     System.out.println("A sua armadura já está completa.");
                 }

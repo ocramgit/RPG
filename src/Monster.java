@@ -21,10 +21,17 @@ public class Monster {
         if(hp > 0) {
             if (player.hp > 9) {
                 int rd = randomNumber();
-                player.hp -= rd*damageMultiplier;
-                System.out.println("Sua vida: " + player.hp);
-                System.out.println("Você sofreu um golpe de " + rd*damageMultiplier + " de vida!");
-                System.out.println("======================");
+                if(player.armour > 1) {
+                    player.armour -= rd * damageMultiplier;
+                    System.out.println("Sua vida: " + player.hp);
+                    System.out.println("Sua armadura: " + player.armour+"%");
+                    System.out.println("Você sofreu um golpe de " + rd * damageMultiplier + " na armadura!");
+                } else {
+                    player.hp -= rd * damageMultiplier;
+                    System.out.println("Sua vida: " + player.hp);
+                    System.out.println("Você sofreu um golpe de " + rd * damageMultiplier + " de vida!");
+                    System.out.println("======================");
+                }
             } else {
                 player.hp = player.hp - 9;
                 System.out.println("Você sofreu um golpe de " + 9 + " de vida!");
