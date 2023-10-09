@@ -54,7 +54,23 @@ public class Dungeon {
 
         while(!flyingisDead) {
 
-            playerIsDead(player);
+            if(player.hp <= 0){
+                System.out.println("Você morreu e perdeu 50% das suas moedas.");
+                player.coins -= player.coins / 2;
+                player.hp = 100;
+
+                flying_Tiger.hp = 2300;
+                enderman.hp = 3400;
+                baby_Dragon.hp = 4000;
+                giant.hp = 4500;
+                dragon.hp = 5500;
+
+                gameCore.start();
+                break;
+            }
+
+            isPlayerDead(player);
+
 
             System.out.println("1 - Atacar " + "- ("+ flying_Tiger.name+") - ("+flying_Tiger.hp+" de Vida)");
             System.out.println("2 - Recuperar vida (50 XP)");
@@ -94,174 +110,174 @@ public class Dungeon {
     }
 
     public void levelTwo() {
-        while(!endermanisDead) {
+        while (!endermanisDead) {
 
-            playerIsDead(player);
+            isPlayerDead(player);
 
-            System.out.println("1 - Atacar " + "- ("+ enderman.name+") - ("+enderman.hp+" de Vida)");
-            System.out.println("2 - Recuperar vida (100 XP)");
-            System.out.println("3 - Desistir");
-            System.out.println("");
-            System.out.print("Escolha a opção: ");
+                System.out.println("1 - Atacar " + "- (" + enderman.name + ") - (" + enderman.hp + " de Vida)");
+                System.out.println("2 - Recuperar vida (100 XP)");
+                System.out.println("3 - Desistir");
+                System.out.println("");
+                System.out.print("Escolha a opção: ");
 
-            int choice = sc.nextInt();
+                int choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    enderman.damageMultiplier = 2;
-                    player.attack(enderman);
-                    enderman.autoAttack(player);
-                    break;
-                case 2:
-                    shop.buyLife(player, 100);
-                    break;
-                case 3:
-                    System.out.println("Você desistiu da dungeon.");
-                    flying_Tiger.hp = 2300;
-                    enderman.hp = 3400;
-                    gameCore.start();
-                default:
-                    System.out.println("Número inválido.");
-                    levelTwo();
-                    break;
+                switch (choice) {
+                    case 1:
+                        enderman.damageMultiplier = 2;
+                        player.attack(enderman);
+                        enderman.autoAttack(player);
+                        break;
+                    case 2:
+                        shop.buyLife(player, 100);
+                        break;
+                    case 3:
+                        System.out.println("Você desistiu da dungeon.");
+                        flying_Tiger.hp = 2300;
+                        enderman.hp = 3400;
+                        gameCore.start();
+                    default:
+                        System.out.println("Número inválido.");
+                        levelTwo();
+                        break;
+                }
+
+                if (flying_Tiger.hp <= 0) {
+                    System.out.println("Você matou o " + enderman.name);
+                    System.out.println("Nível 3...");
+                    endermanisDead = true;
+                    levelThree();
+                }
             }
-
-            if (flying_Tiger.hp <= 0) {
-                System.out.println("Você matou o " + enderman.name);
-                System.out.println("Nível 3...");
-                endermanisDead = true;
-                levelThree();
-            }
-        }
     }
 
     public void levelThree() {
         while(!babyDragonisDead) {
 
-            playerIsDead(player);
+            isPlayerDead(player);
 
-            System.out.println("1 - Atacar " + "- ("+ baby_Dragon.name+") - ("+baby_Dragon.hp+" de Vida)");
-            System.out.println("2 - Recuperar vida (200 XP)");
-            System.out.println("3 - Desistir");
-            System.out.println("");
-            System.out.print("Escolha a opção: ");
+                System.out.println("1 - Atacar " + "- (" + baby_Dragon.name + ") - (" + baby_Dragon.hp + " de Vida)");
+                System.out.println("2 - Recuperar vida (200 XP)");
+                System.out.println("3 - Desistir");
+                System.out.println("");
+                System.out.print("Escolha a opção: ");
 
-            int choice = sc.nextInt();
+                int choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    baby_Dragon.damageMultiplier = 3;
-                    player.attack(baby_Dragon);
-                    baby_Dragon.autoAttack(player);
-                    break;
-                case 2:
-                    shop.buyLife(player, 200);
-                    break;
-                case 3:
-                    System.out.println("Você desistiu da dungeon.");
-                    flying_Tiger.hp = 2300;
-                    enderman.hp = 3400;
-                    baby_Dragon.hp = 4000;
-                    gameCore.start();
-                default:
-                    System.out.println("Número inválido.");
-                    levelThree();
-                    break;
-            }
+                switch (choice) {
+                    case 1:
+                        baby_Dragon.damageMultiplier = 3;
+                        player.attack(baby_Dragon);
+                        baby_Dragon.autoAttack(player);
+                        break;
+                    case 2:
+                        shop.buyLife(player, 200);
+                        break;
+                    case 3:
+                        System.out.println("Você desistiu da dungeon.");
+                        flying_Tiger.hp = 2300;
+                        enderman.hp = 3400;
+                        baby_Dragon.hp = 4000;
+                        gameCore.start();
+                    default:
+                        System.out.println("Número inválido.");
+                        levelThree();
+                        break;
+                }
 
-            if (baby_Dragon.hp <= 0) {
-                System.out.println("Você matou o " + baby_Dragon.name);
-                babyDragonisDead = true;
-                levelFour();
+                if (baby_Dragon.hp <= 0) {
+                    System.out.println("Você matou o " + baby_Dragon.name);
+                    babyDragonisDead = true;
+                    levelFour();
+                }
             }
         }
-    }
 
     public void levelFour() {
-        while(!giantisDead) {
+            while (!giantisDead) {
 
-            playerIsDead(player);
+                isPlayerDead(player);
 
-            System.out.println("1 - Atacar " + "- ("+ giant.name+") - ("+ giant.hp+" de Vida)");
-            System.out.println("2 - Recuperar vida (400 XP)");
-            System.out.println("3 - Desistir");
-            System.out.println("");
-            System.out.print("Escolha a opção: ");
+                    System.out.println("1 - Atacar " + "- (" + giant.name + ") - (" + giant.hp + " de Vida)");
+                    System.out.println("2 - Recuperar vida (400 XP)");
+                    System.out.println("3 - Desistir");
+                    System.out.println("");
+                    System.out.print("Escolha a opção: ");
 
-            int choice = sc.nextInt();
+                    int choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    giant.damageMultiplier = 4;
-                    player.attack(giant);
-                    giant.autoAttack(player);
-                    break;
-                case 2:
-                    shop.buyLife(player, 400);
-                    break;
-                case 3:
-                    System.out.println("Você desistiu da dungeon.");
-                    flying_Tiger.hp = 2300;
-                    enderman.hp = 3400;
-                    baby_Dragon.hp = 4000;
-                    giant.hp = 4500;
-                    gameCore.start();
-                default:
-                    System.out.println("Número inválido.");
-                    levelFour();
-                    break;
+                    switch (choice) {
+                        case 1:
+                            giant.damageMultiplier = 4;
+                            player.attack(giant);
+                            giant.autoAttack(player);
+                            break;
+                        case 2:
+                            shop.buyLife(player, 400);
+                            break;
+                        case 3:
+                            System.out.println("Você desistiu da dungeon.");
+                            flying_Tiger.hp = 2300;
+                            enderman.hp = 3400;
+                            baby_Dragon.hp = 4000;
+                            giant.hp = 4500;
+                            gameCore.start();
+                        default:
+                            System.out.println("Número inválido.");
+                            levelFour();
+                            break;
+                    }
+
+                    if (giant.hp <= 0) {
+                        System.out.println("Você matou o " + giant.name);
+                        giantisDead = true;
+                        levelFive();
+                    }
             }
-
-            if (giant.hp <= 0) {
-                System.out.println("Você matou o " + giant.name);
-                giantisDead = true;
-                levelFive();
-            }
-        }
     }
 
     public void levelFive() {
         while(!dragonisDead) {
 
-            playerIsDead(player);
+            isPlayerDead(player);
 
-            System.out.println("1 - Atacar " + "- ("+ dragon.name+") - ("+dragon.hp+" de Vida)");
-            System.out.println("2 - Recuperar vida (800 XP)");
-            System.out.println("3 - Desistir");
-            System.out.println("");
-            System.out.print("Escolha a opção: ");
+                System.out.println("1 - Atacar " + "- (" + dragon.name + ") - (" + dragon.hp + " de Vida)");
+                System.out.println("2 - Recuperar vida (800 XP)");
+                System.out.println("3 - Desistir");
+                System.out.println("");
+                System.out.print("Escolha a opção: ");
 
-            int choice = sc.nextInt();
+                int choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    dragon.damageMultiplier = 5;
-                    player.attack(dragon);
-                    dragon.autoAttack(player);
-                    break;
-                case 2:
-                    shop.buyLife(player, 800);
-                    break;
-                case 3:
-                    System.out.println("Você desistiu da dungeon.");
-                    flying_Tiger.hp = 2300;
-                    enderman.hp = 3400;
-                    baby_Dragon.hp = 4000;
-                    giant.hp = 4500;
-                    dragon.hp = 5500;
-                    gameCore.start();
-                default:
-                    System.out.println("Número inválido.");
-                    levelFive();
-                    break;
+                switch (choice) {
+                    case 1:
+                        dragon.damageMultiplier = 5;
+                        player.attack(dragon);
+                        dragon.autoAttack(player);
+                        break;
+                    case 2:
+                        shop.buyLife(player, 800);
+                        break;
+                    case 3:
+                        System.out.println("Você desistiu da dungeon.");
+                        flying_Tiger.hp = 2300;
+                        enderman.hp = 3400;
+                        baby_Dragon.hp = 4000;
+                        giant.hp = 4500;
+                        dragon.hp = 5500;
+                        gameCore.start();
+                    default:
+                        System.out.println("Número inválido.");
+                        levelFive();
+                        break;
+                }
+
+                if (dragon.hp <= 0) {
+                    System.out.println("Você matou o " + dragon.name);
+                    dragonisDead = true;
+                    finishDungeon();
+                }
             }
-
-            if (dragon.hp <= 0) {
-                System.out.println("Você matou o " + dragon.name);
-                dragonisDead = true;
-                finishDungeon();
-            }
-        }
     }
 
     public void finishDungeon() {
@@ -275,12 +291,19 @@ public class Dungeon {
         }
     }
 
-    public void playerIsDead(Player player) {
-        if(player.hp <= 0) {
-            System.out.println("Você perdeu todas as suas moedas por ter morrido na Dungeon.");
-            player.coins = 0;
+    public void isPlayerDead(Player player) {
+        if(player.hp <= 0){
+            System.out.println("Você morreu e perdeu 50% das suas moedas.");
+            player.coins -= player.coins / 2;
+            player.hp = 100;
+
+            flying_Tiger.hp = 2300;
+            enderman.hp = 3400;
+            baby_Dragon.hp = 4000;
+            giant.hp = 4500;
+            dragon.hp = 5500;
+
             gameCore.start();
         }
     }
-
 }

@@ -57,11 +57,17 @@ public class GameCore {
                         break;
                     case 4:
                         if(!dungeonConcluded) {
+                            dungeon.flyingisDead = false;
+                            dungeon.endermanisDead = false;
+                            dungeon.babyDragonisDead = false;
+                            dungeon.giantisDead = false;
+                            dungeon.dragonisDead = false;
                             dungeon.startDungeon();
+                            break;
                         } else {
                             System.out.println("Dungeon já concluída.");
+                            break;
                         }
-                        break;
                     case 5:
                         profile(player);
                         break;
@@ -83,6 +89,7 @@ public class GameCore {
                     case 8:
                         System.out.println("Você decidiu sair do jogo. O seu progresso não ficará guardado.");
                         playerIsDead = true;
+                        dungeon.flyingisDead = true;
                         break;
                     case 111:
                         player.xp += 1000;
