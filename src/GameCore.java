@@ -16,8 +16,8 @@ public class GameCore {
     Scanner sc = new Scanner(System.in);
 
 
-    public GameCore() {
-        player = new Player("Marco", this);
+    public GameCore(String playerName) {
+        player = new Player(playerName, this);
         zombie = new Monster("Zombie", 1200);
         slime = new Monster("Slime", 2100);
         wither = new Monster("Wither", 4900);
@@ -81,8 +81,8 @@ public class GameCore {
                         System.out.print("Resposta: ");
                         menuShop();
                     case 8:
+                        System.out.println("Você decidiu sair do jogo. O seu progresso não ficará guardado.");
                         playerIsDead = true;
-                        checkIfPlayerIsDead(player);
                         break;
                     case 111:
                         player.xp += 1000;
@@ -133,6 +133,7 @@ public class GameCore {
                 break;
             case 8:
                 start();
+                break;
             default:
                 System.out.println("Número inválido.");
                 start();
