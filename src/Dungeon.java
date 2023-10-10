@@ -74,7 +74,8 @@ public class Dungeon {
 
             System.out.println("1 - Atacar " + "- ("+ flying_Tiger.name+") - ("+flying_Tiger.hp+" de Vida)");
             System.out.println("2 - Recuperar vida (50 XP)");
-            System.out.println("3 - Desistir");
+            System.out.println("3 - Comprar Armadura (200 XP)");
+            System.out.println("4 - Desistir");
             System.out.println("");
             System.out.print("Escolha a opção: ");
 
@@ -89,10 +90,16 @@ public class Dungeon {
                     shop.buyLife(player, 50);
                     break;
                 case 3:
+                    shop.buyArmour(player, 250);
+                    break;
+                case 4:
                     System.out.println("Você desistiu da dungeon.");
                     flying_Tiger.hp = 2300;
+                    enderman.hp = 3400;
+                    baby_Dragon.hp = 4000;
+                    giant.hp = 4500;
+                    dragon.hp = 5500;
                     gameCore.start();
-                    break;
                 default:
                     System.out.println("Número inválido.");
                     levelOne();
@@ -116,7 +123,8 @@ public class Dungeon {
 
                 System.out.println("1 - Atacar " + "- (" + enderman.name + ") - (" + enderman.hp + " de Vida)");
                 System.out.println("2 - Recuperar vida (100 XP)");
-                System.out.println("3 - Desistir");
+                System.out.println("3 - Comprar Armadura (250 XP)");
+                System.out.println("4 - Desistir");
                 System.out.println("");
                 System.out.print("Escolha a opção: ");
 
@@ -132,9 +140,15 @@ public class Dungeon {
                         shop.buyLife(player, 100);
                         break;
                     case 3:
+                        shop.buyArmour(player, 250);
+                        break;
+                    case 4:
                         System.out.println("Você desistiu da dungeon.");
                         flying_Tiger.hp = 2300;
                         enderman.hp = 3400;
+                        baby_Dragon.hp = 4000;
+                        giant.hp = 4500;
+                        dragon.hp = 5500;
                         gameCore.start();
                     default:
                         System.out.println("Número inválido.");
@@ -158,7 +172,8 @@ public class Dungeon {
 
                 System.out.println("1 - Atacar " + "- (" + baby_Dragon.name + ") - (" + baby_Dragon.hp + " de Vida)");
                 System.out.println("2 - Recuperar vida (200 XP)");
-                System.out.println("3 - Desistir");
+                System.out.println("3 - Comprar Armadura (300 XP)");
+                System.out.println("4 - Desistir");
                 System.out.println("");
                 System.out.print("Escolha a opção: ");
 
@@ -174,10 +189,15 @@ public class Dungeon {
                         shop.buyLife(player, 200);
                         break;
                     case 3:
+                        shop.buyArmour(player, 300);
+                        break;
+                    case 4:
                         System.out.println("Você desistiu da dungeon.");
                         flying_Tiger.hp = 2300;
                         enderman.hp = 3400;
                         baby_Dragon.hp = 4000;
+                        giant.hp = 4500;
+                        dragon.hp = 5500;
                         gameCore.start();
                     default:
                         System.out.println("Número inválido.");
@@ -200,7 +220,8 @@ public class Dungeon {
 
                     System.out.println("1 - Atacar " + "- (" + giant.name + ") - (" + giant.hp + " de Vida)");
                     System.out.println("2 - Recuperar vida (400 XP)");
-                    System.out.println("3 - Desistir");
+                    System.out.println("3 - Comprar Armadura (350 XP)");
+                    System.out.println("4 - Desistir");
                     System.out.println("");
                     System.out.print("Escolha a opção: ");
 
@@ -216,11 +237,15 @@ public class Dungeon {
                             shop.buyLife(player, 400);
                             break;
                         case 3:
+                            shop.buyArmour(player, 350);
+                            break;
+                        case 4:
                             System.out.println("Você desistiu da dungeon.");
                             flying_Tiger.hp = 2300;
                             enderman.hp = 3400;
                             baby_Dragon.hp = 4000;
                             giant.hp = 4500;
+                            dragon.hp = 5500;
                             gameCore.start();
                         default:
                             System.out.println("Número inválido.");
@@ -243,7 +268,8 @@ public class Dungeon {
 
                 System.out.println("1 - Atacar " + "- (" + dragon.name + ") - (" + dragon.hp + " de Vida)");
                 System.out.println("2 - Recuperar vida (800 XP)");
-                System.out.println("3 - Desistir");
+                System.out.println("3 - Comprar Armadura (400 XP)");
+                System.out.println("4 - Desistir");
                 System.out.println("");
                 System.out.print("Escolha a opção: ");
 
@@ -259,6 +285,9 @@ public class Dungeon {
                         shop.buyLife(player, 800);
                         break;
                     case 3:
+                        shop.buyArmour(player, 400);
+                        break;
+                    case 4:
                         System.out.println("Você desistiu da dungeon.");
                         flying_Tiger.hp = 2300;
                         enderman.hp = 3400;
