@@ -20,6 +20,8 @@ public class Main {
         System.out.println("A carregar jogo...");
         pause();
         game.start();
+
+
     }
 
     public static void pause() throws InterruptedException {

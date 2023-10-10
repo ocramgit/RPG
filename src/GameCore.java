@@ -12,6 +12,7 @@ public class GameCore {
 
     boolean playerIsDead = false;
     Dungeon dungeon;
+    Dice dice;
 
     Scanner sc = new Scanner(System.in);
 
@@ -21,6 +22,7 @@ public class GameCore {
         zombie = new Monster("Zombie", 1200);
         slime = new Monster("Slime", 2100);
         wither = new Monster("Wither", 4900);
+        dice = new Dice(player);
         shop = new Shop();
         inventory = new Inventory(player);
         dungeon = new Dungeon(player, this, shop);
@@ -98,11 +100,13 @@ public class GameCore {
                         player.magicPowder += 1000;
                         System.out.println("Cheat usado!");
                         break;
+                    case 112:
+                        dice.playDice(player);
+                        break;
                     default:
                         System.out.println("Número inválido.");
                         start();
                         break;
-
                 }
 
             checkIfPlayerIsDead(player);
