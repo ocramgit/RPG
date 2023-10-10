@@ -36,10 +36,11 @@ public class GameCore {
             System.out.println("2 - Atacar Slime [Mediano]");
             System.out.println("3 - Atacar Wither [Dificíl]");
             System.out.println("4 - Modo Dungeon [Hardcore]");
-            System.out.println("5 - Status");
-            System.out.println("6 - Inventário");
-            System.out.println("7 - Loja");
-            System.out.println("8 - Sair do Jogo");
+            System.out.println("5 - Apostar (Par ou Ímpar)");
+            System.out.println("6 - Status");
+            System.out.println("7 - Inventário");
+            System.out.println("8 - Loja");
+            System.out.println("9 - Sair do Jogo");
             System.out.println(" ");
             System.out.print("Selecione o que fazer: ");
 
@@ -71,12 +72,15 @@ public class GameCore {
                             break;
                         }
                     case 5:
-                        profile(player);
+                        dice.playDice(player);
                         break;
                     case 6:
-                        inventory.check(player);
+                        profile(player);
                         break;
                     case 7:
+                        inventory.check(player);
+                        break;
+                    case 8:
                         System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + player.getXp()+")" + " - (Suas moedas: " + player.coins + ")" + " - (Seu pó mágico: "+ player.magicPowder+")");
                         System.out.println("1 - Comprar XP Multiplier (100 XP)");
                         System.out.println("2 - Comprar VIDA (50 XP)");
@@ -89,7 +93,7 @@ public class GameCore {
                         System.out.println("9 - Sair da Loja");
                         System.out.print("Resposta: ");
                         menuShop();
-                    case 8:
+                    case 9:
                         System.out.println("Você decidiu sair do jogo. O seu progresso não ficará guardado.");
                         playerIsDead = true;
                         dungeon.flyingisDead = true;
@@ -99,9 +103,6 @@ public class GameCore {
                         player.coins += 1000;
                         player.magicPowder += 1000;
                         System.out.println("Cheat usado!");
-                        break;
-                    case 112:
-                        dice.playDice(player);
                         break;
                     default:
                         System.out.println("Número inválido.");

@@ -25,7 +25,7 @@ public class Main {
     }
 
     public static void pause() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(500);
     }
 
 }

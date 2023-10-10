@@ -5,6 +5,7 @@ public class Dice {
     Scanner sc = new Scanner(System.in);
     int montanteApostado;
     Player player;
+    int typeUser;
 
     public Dice(Player player) {
         this.player = player;
@@ -17,8 +18,9 @@ public class Dice {
         System.out.println("3 - Pó Mágico");
         System.out.println("4 - Sair para o menu principal");
         System.out.print("Opção: ");
-        switch (sc.nextInt()) {
-            case 1:
+
+        typeUser = sc.nextInt();
+
                 System.out.print("Montante a apostar: ");
                 montanteApostado = sc.nextInt();
                 if(player.xp >= montanteApostado) {
@@ -26,37 +28,55 @@ public class Dice {
                     System.out.println("1 - PAR");
                     System.out.println("2 - ÍMPAR");
                     System.out.println("3 - Desistir");
+                    System.out.println("");
+                    System.out.print("Opção: ");
 
-                    int userChoice = sc.nextInt();
-
-                    if(userChoice == 1) {
-                        checkIfIsOddOrEven(userChoice, 1);
+                    switch (sc.nextInt()) {
+                        case 1:
+                            checkIfIsOddOrEven(1);
+                            break;
+                        case 2:
+                            checkIfIsOddOrEven(2);
+                            break;
+                        case 3:
+                            System.out.println("Você desistiu do jogo Par ou Ímpar!");
+                            break;
+                        default:
+                            System.out.println("Número inválido");
+                            playDice(player);
+                            break;
                     }
-
-                    if(userChoice == 2) {
-                        checkIfIsOddOrEven(2, 2);
-                    }
-
                 } else {
                     System.out.println("Você não tem XP suficiente.");
                 }
-                break;
-            default:
-                System.out.println("Número inválido");
-                break;
-        }
     }
 
-    public void checkIfIsOddOrEven(int choice, int evenOrOdd) {
+    public void checkIfIsOddOrEven(int choice) {
         int random = generateNumber();
-        if(choice % 2 == evenOrOdd) {
+        if(random % 2 == choice-1) {
             System.out.println("Você acertou! O número gerado foi " + random + ".");
-            System.out.println("Ganhou: "+montanteApostado+" de XP.");
-            player.xp+=montanteApostado;
+            if(typeUser == 1) {
+                System.out.println("Ganhou: "+montanteApostado+" de XP.");
+                player.xp += montanteApostado;
+            } else if (typeUser == 2) {
+                System.out.println("Ganhou: "+montanteApostado+" de Coins.");
+                player.coins += montanteApostado;
+            } else {
+                System.out.println("Ganhou: "+montanteApostado+" de Pó Mágico.");
+                player.magicPowder += montanteApostado;
+            }
         } else {
             System.out.println("Errado! O número gerado foi "+random+".");
-            System.out.println("Perdeste: "+montanteApostado+" de XP.");
-            player.xp+=montanteApostado;
+            if(typeUser == 1) {
+                System.out.println("Perdeste: "+montanteApostado+" de XP.");
+                player.xp -= montanteApostado;
+            } else if (typeUser == 2) {
+                System.out.println("Perdeste: "+montanteApostado+" de Coins.");
+                player.coins -= montanteApostado;
+            } else {
+                System.out.println("Perdeste: "+montanteApostado+" de Pó Mágico.");
+                player.magicPowder -= montanteApostado;
+            }
         }
 
     }
