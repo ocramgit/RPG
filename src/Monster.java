@@ -19,17 +19,17 @@ public class Monster {
 
     public void autoAttack(Player player) {
         if(hp > 0) {
-            if (player.hp > 9) {
+            if (player.getHp() > 9) {
                 int rd = randomNumber();
-                if(player.armour > 1) {
+                if(player.getArmour() > 1) {
                     player.armour -= rd * damageMultiplier;
-                    System.out.println("Sua vida: " + player.hp);
+                    System.out.println("Sua vida: " + player.getHp());
                     System.out.println("Sua armadura: " + player.armour+"%");
-                    System.out.println("Você sofreu um golpe de " + rd * damageMultiplier + " na armadura!");
+                    System.out.println("Você sofreu um golpe de " + rd * player.getDamageMultiplier() + " na armadura!");
                 } else {
                     player.hp -= rd * damageMultiplier;
-                    System.out.println("Sua vida: " + player.hp);
-                    System.out.println("Você sofreu um golpe de " + rd * damageMultiplier + " de vida!");
+                    System.out.println("Sua vida: " + player.getHp());
+                    System.out.println("Você sofreu um golpe de " + rd * player.getDamageMultiplier() + " de vida!");
                     System.out.println("======================");
                 }
             } else {

@@ -4,6 +4,27 @@ public class Shop {
 
     Scanner sc = new Scanner(System.in);
 
+    private Player player;
+    private GameCore gameCore;
+
+    public Shop(Player player, GameCore gameCore) {
+        this.player = player;
+        this.gameCore = gameCore;
+    }
+
+    public void getShopMessage() {
+        System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + gameCore.getPlayer().getXp()+")" + " - (Suas moedas: " + gameCore.getPlayer().getCoins() + ")" + " - (Seu pó mágico: "+ player.magicPowder+")");
+        System.out.println("1 - Comprar XP Multiplier (100 XP)");
+        System.out.println("2 - Comprar VIDA (50 XP)");
+        System.out.println("3 - Comprar Armadura (150 XP)");
+        System.out.println("4 - Converter XP em Moedas (2 XP cada)");
+        System.out.println("5 - Comprar Espada de Esmeralda (75 Moedas)");
+        System.out.println("6 - Vender Espada de Esmeralda (60 Moedas)");
+        System.out.println("7 - Comprar pó mágico (17 Moedas cada)");
+        System.out.println("8 - Encantar espada (15 de pó mágico)");
+        System.out.println("9 - Sair da Loja");
+        System.out.print("Resposta: ");
+    }
     public void buyLife(Player player, int price) {
         if(player.hp > 0 && player.xp >= 50) {
             System.out.println("Você foi curado com sucesso!");
@@ -17,7 +38,7 @@ public class Shop {
     public void buyXPMultiplier(Player player, int price) {
         if(player.xp >= price) {
             System.out.println("Você comprou XP Multiplier com sucesso!");
-            if (player.xpMultiplier != 2.30) {
+            if (player.getXpMultiplier() != 2.30) {
                 player.xpMultiplier = 2.30;
                 player.xp -= price;
             } else if (player.xpMultiplier == 2.30) {

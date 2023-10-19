@@ -1,7 +1,7 @@
 public class Player {
 
-    String name;
-    GameCore gameCore;
+    private String name;
+    private GameCore gameCore;
     boolean haveSword = false;
     int hp = 100;
     float xp;
@@ -18,6 +18,14 @@ public class Player {
         this.gameCore = gameCore;
     }
 
+    public double getCoins() {
+        return coins;
+    }
+
+    public int getRandom() {
+        return random;
+    }
+
     public void attack(Monster monster) {
         gameCore.checkAttack(monster);
     }
@@ -28,6 +36,30 @@ public class Player {
 
     public void setHp(int hp) {
         this.hp = hp;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getDamageMultiplier() {
+        return damageMultiplier;
+    }
+
+    public double getXpMultiplier() {
+        return xpMultiplier;
+    }
+
+    public int getArmour() {
+        return armour;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getMagicPowder() {
+        return magicPowder;
     }
 
     public void random() {
