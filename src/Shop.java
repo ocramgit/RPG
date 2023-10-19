@@ -4,8 +4,8 @@ public class Shop {
 
     Scanner sc = new Scanner(System.in);
 
-    private Player player;
-    private GameCore gameCore;
+    private final Player player;
+    private final GameCore gameCore;
 
     public Shop(Player player, GameCore gameCore) {
         this.player = player;
@@ -13,7 +13,7 @@ public class Shop {
     }
 
     public void getShopMessage() {
-        System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + gameCore.getPlayer().getXp()+")" + " - (Suas moedas: " + gameCore.getPlayer().getCoins() + ")" + " - (Seu pó mágico: "+ player.magicPowder+")");
+        System.out.println("Bem-vindo à Loja!" + " (Seu XP: " + gameCore.getPlayer().getXp()+")" + " - (Suas moedas: " + gameCore.getPlayer().getCoins() + ")" + " - (Seu pó mágico: "+ player.getMagicPowder()+")");
         System.out.println("1 - Comprar XP Multiplier (100 XP)");
         System.out.println("2 - Comprar VIDA (50 XP)");
         System.out.println("3 - Comprar Armadura (150 XP)");
@@ -26,9 +26,9 @@ public class Shop {
         System.out.print("Resposta: ");
     }
     public void buyLife(Player player, int price) {
-        if(player.hp > 0 && player.xp >= 50) {
+        if(player.getHp() > 0 && player.getXp() >= 50) {
             System.out.println("Você foi curado com sucesso!");
-            player.xp -= price;
+            player.setXp(player.getXp() - price);
             player.setHp(100);
         } else {
             System.out.println("Você não tem XP suficiente!");
@@ -36,12 +36,12 @@ public class Shop {
     }
 
     public void buyXPMultiplier(Player player, int price) {
-        if(player.xp >= price) {
+        if(player.getXp() >= price) {
             System.out.println("Você comprou XP Multiplier com sucesso!");
             if (player.getXpMultiplier() != 2.30) {
-                player.xpMultiplier = 2.30;
-                player.xp -= price;
-            } else if (player.xpMultiplier == 2.30) {
+                player.setXpMultiplier(2.30);
+                player.setXp(player.getXp() - price);
+            } else if (player.getXpMultiplier() == 2.30) {
                 System.out.println("Você não tem XP suficiente ou já tem esse produto.");
             }
         } else {
@@ -52,9 +52,9 @@ public class Shop {
     public void buyCoins(Player player) {
         System.out.println("Quantas moedas deseja comprar? ");
         int quantity = sc.nextInt();
-        if(player.xp > quantity*2) {
-            player.coins += quantity;
-            player.xp -= quantity * 2;
+        if(player.getXp() > quantity*2) {
+            player.setCoins(player.getCoins() + quantity);
+            player.setXp(player.getXp() - (quantity*2));
             System.out.println("Converteu com sucesso. Foi-lhe cobrado " + quantity * 2 + " por " + quantity + " moedas.");
         } else {
             System.out.println("Você não tem XP suficiente.");
@@ -63,9 +63,9 @@ public class Shop {
 
     public void buySword(Player player, int price) {
         if(!player.haveSword) {
-            if (player.coins >= price) {
+            if (player.getCoins() >= price) {
                 System.out.println("Você comprou com sucesso a espada!");
-                player.coins -= price;
+                player.setCoins(player.getCoins() - price);
                 player.haveSword = true;
             } else {
                 System.out.println("Você não tem moedas suficientes.");
@@ -76,9 +76,9 @@ public class Shop {
     }
 
     public void sellSword(Player player) {
-        if(player.haveSword == true) {
+        if(player.haveSword) {
             player.haveSword = false;
-            player.coins += 60;
+            player.setCoins(player.getCoins() + 60);
             System.out.println("Você vendeu a sua espada por 60 moedas.");
         }
     }
@@ -86,9 +86,9 @@ public class Shop {
     public void buyMagicPowder(Player player, int price) {
         System.out.print("Digite quantos deseja comprar: ");
         int quantity = sc.nextInt();
-        if(player.coins >= price*quantity) {
-            player.magicPowder += quantity;
-            player.coins -= price*quantity;
+        if(player.getCoins() >= price*quantity) {
+            player.setMagicPowder(player.getMagicPowder() + quantity);
+            player.setCoins(player.getCoins() - (price*quantity));
             System.out.println("Comprou "+ quantity+ " de pó mágico por "+price*quantity+ " moedas.");
         } else {
             System.out.println("Sem moedas suficientes.");
@@ -98,9 +98,9 @@ public class Shop {
     public void enchantSword(Player player) {
 
         if(player.haveSword) {
-            if(player.magicPowder >= 15) {
+            if(player.getMagicPowder() >= 15) {
                 player.damageMultiplier *= 1.20;
-                player.magicPowder -= 15;
+                player.setMagicPowder(player.getMagicPowder() - 15);
                 System.out.printf("Você encantou a sua espada! Você agora tem um multiplicador de %.2f", player.damageMultiplier);
             } else {
                 System.out.println("Você não tem pó suficiente!");
@@ -111,9 +111,9 @@ public class Shop {
     }
 
     public void buyArmour(Player player, int price) {
-            if (player.xp >= 200) {
-                if (player.armour < 100) {
-                player.armour = 100;
+            if (player.getXp() >= 200) {
+                if (player.getArmour() < 100) {
+                player.setArmour(100);
                 System.out.println("Você comprou ou reparou a armadura.");
             } else {
                     System.out.println("A sua armadura já está completa.");

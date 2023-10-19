@@ -23,7 +23,7 @@ public class Dice {
 
                 System.out.print("Montante a apostar: ");
                 montanteApostado = sc.nextInt();
-                if(player.xp >= montanteApostado) {
+                if(player.getXp() >= montanteApostado) {
                     System.out.println("Acha que a banca vai gerar um número PAR ou ÍMPAR?");
                     System.out.println("1 - PAR");
                     System.out.println("2 - ÍMPAR");
@@ -57,25 +57,25 @@ public class Dice {
             System.out.println("Você acertou! O número gerado foi " + random + ".");
             if(typeUser == 1) {
                 System.out.println("Ganhou: "+montanteApostado+" de XP.");
-                player.xp += montanteApostado;
+                player.setXp(player.getXp() + montanteApostado);
             } else if (typeUser == 2) {
                 System.out.println("Ganhou: "+montanteApostado+" de Coins.");
-                player.coins += montanteApostado;
+                player.setCoins(player.getCoins() + montanteApostado);
             } else {
                 System.out.println("Ganhou: "+montanteApostado+" de Pó Mágico.");
-                player.magicPowder += montanteApostado;
+                player.setMagicPowder(player.getMagicPowder() + montanteApostado);
             }
         } else {
             System.out.println("Errado! O número gerado foi "+random+".");
             if(typeUser == 1) {
                 System.out.println("Perdeste: "+montanteApostado+" de XP.");
-                player.xp -= montanteApostado;
+                player.setXp(player.getXp() - montanteApostado);
             } else if (typeUser == 2) {
                 System.out.println("Perdeste: "+montanteApostado+" de Coins.");
-                player.coins -= montanteApostado;
+                player.setCoins(player.getCoins() - montanteApostado);
             } else {
                 System.out.println("Perdeste: "+montanteApostado+" de Pó Mágico.");
-                player.magicPowder -= montanteApostado;
+                player.setMagicPowder(player.getMagicPowder() - montanteApostado);
             }
         }
 

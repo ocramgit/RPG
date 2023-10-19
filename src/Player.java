@@ -3,19 +3,31 @@ public class Player {
     private String name;
     private GameCore gameCore;
     boolean haveSword = false;
-    int hp = 100;
-    float xp;
-    double xpMultiplier = 0;
-    double coins;
-    int magicPowder = 0;
+    private int hp = 100;
+    private float xp;
+    private double xpMultiplier = 0;
+    private double coins;
+    private int magicPowder = 0;
     double damageMultiplier = 2.30;
-    int armour = 0;
+    private int armour = 0;
 
     int random;
 
     public Player(String name, GameCore gameCore) {
         this.name = name;
         this.gameCore = gameCore;
+    }
+
+    public void setDamageMultiplier(double damageMultiplier) {
+        this.damageMultiplier = damageMultiplier;
+    }
+
+    public void setXpMultiplier(double xpMultiplier) {
+        this.xpMultiplier = xpMultiplier;
+    }
+
+    public void setMagicPowder(int magicPowder) {
+        this.magicPowder = magicPowder;
     }
 
     public double getCoins() {
@@ -60,6 +72,18 @@ public class Player {
 
     public int getMagicPowder() {
         return magicPowder;
+    }
+
+    public void setXp(float xp) {
+        this.xp = xp;
+    }
+
+    public void setCoins(double coins) {
+        this.coins = coins;
+    }
+
+    public void setArmour(int armour) {
+        this.armour = armour;
     }
 
     public void random() {

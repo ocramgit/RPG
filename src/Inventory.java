@@ -1,6 +1,6 @@
 public class Inventory {
 
-    Player player;
+    private Player player;
 
     public Inventory(Player player) {
         this.player = player;
@@ -16,12 +16,12 @@ public class Inventory {
                 }
         }
 
-        if(player.magicPowder > 0) {
-            System.out.println("\uD83D\uDD2E " + player.magicPowder + "x pó mágico");
+        if(player.getMagicPowder() > 0) {
+            System.out.println("\uD83D\uDD2E " + player.getMagicPowder() + "x pó mágico");
         }
 
         if(!player.haveSword) {
-            if(player.magicPowder == 0) {
+            if(player.getMagicPowder() == 0) {
                 System.out.println("Inventário vazio.");
             }
         }

@@ -7,14 +7,12 @@ public class GameCore {
     private Shop shop;
     private Inventory inventory;
     boolean dungeonConcluded = false;
-
     boolean playerIsDead = false;
     private Dungeon dungeon;
     private Dice dice;
     private Profile profile;
 
     Scanner sc = new Scanner(System.in);
-
 
     public GameCore(String playerName) {
         player = new Player(playerName, this);
@@ -94,9 +92,9 @@ public class GameCore {
                     dungeon.flyingisDead = true;
                     break;
                 case 111:
-                    player.xp += 1000;
-                    player.coins += 1000;
-                    player.magicPowder += 1000;
+                    player.setXp(player.getXp() + 1000);
+                    player.setCoins(getPlayer().getCoins() - 1000);
+                    player.setMagicPowder(getPlayer().getMagicPowder() + 1000);
                     System.out.println("Cheat usado!");
                     break;
                 default:
@@ -174,39 +172,39 @@ public class GameCore {
 
     public void checkAttack(Monster monster) {
         System.out.println("Você atacou a " + monster.getName());
-        if(monster.hp <= 0) {
+        if(monster.getHp() <= 0) {
             System.out.println("======================");
             System.out.println("Este monstro já está morto.");
             System.out.println("======================");
         } else {
             player.random();
-            if(monster.hp <= 80) {
+            if(monster.getHp() <= 80) {
                 System.out.println("======================");
                 if(getPlayer().haveSword) {
                     System.out.println("Você usou a sua espada de esmeralda.");
-                    System.out.printf("Tirou: %.2f", monster.hp*getPlayer().getDamageMultiplier());
+                    System.out.printf("Tirou: %.2f", monster.getHp()*getPlayer().getDamageMultiplier());
                     System.out.println();
-                    monster.setHp((int) (monster.hp-monster.hp*getPlayer().getDamageMultiplier()));
+                    monster.setHp((int) (monster.getHp()-monster.getHp()*getPlayer().getDamageMultiplier()));
                 } else {
-                    System.out.println("Tirou: " + monster.hp);
+                    System.out.println("Tirou: " + monster.getHp());
                 }
                 monster.setHp(0);
-                System.out.println("Você matou o " + monster.name);
-                if(monster.name == "Zombie") {
-                    getPlayer().xp += 250;
-                    getPlayer().coins += 125;
+                System.out.println("Você matou o " + monster.getName());
+                if(monster.getName() == "Zombie") {
+                    getPlayer().setXp(player.getXp() + 250);
+                    getPlayer().setCoins(getPlayer().getCoins() - 125);
                     System.out.println("Você recebeu 250 de XP e 125 moedas por derrotar o Zombie.");
-                } else if(monster.name == "Slime") {
-                    getPlayer().xp += 500;
-                    getPlayer().coins += 250;
+                } else if(monster.getName() == "Slime") {
+                    getPlayer().setXp(player.getXp() + 5000);
+                    getPlayer().setCoins(getPlayer().getCoins() + 250);
                     System.out.println("Você recebeu 500 de XP e 250 moedas por derrotar a Slime.");
-                } else if(monster.name == "Wither") {
-                    getPlayer().xp += 700;
-                    getPlayer().coins += 350;
+                } else if(monster.getName() == "Wither") {
+                    getPlayer().setXp(player.getXp() + 700);
+                    getPlayer().setCoins(getPlayer().getCoins() + 350);
                     System.out.println("Você recebeu 700 de XP e 350 moedas por derrotar o Wither.");
                 }
                 if(getPlayer().getXpMultiplier() > 2) {
-                    getPlayer().xp += (float) (5 + getPlayer().getXpMultiplier());
+                    getPlayer().setXp((float) (5 + getPlayer().getXpMultiplier()));
                     System.out.println("Ganhou: " + (5 * getPlayer().getXpMultiplier()) + " de XP.");
                     System.out.println("BUFF de XP: ATIVADO");
                 } else {
@@ -215,26 +213,26 @@ public class GameCore {
                 }
                 System.out.println("======================");
             } else {
-                player.xp += 5;
+                player.setXp(getPlayer().getXp() + 5);
                 System.out.println("======================");
                 if(getPlayer().haveSword) {
                     System.out.println("Você usou a sua espada de esmeralda.");
                     System.out.printf("Tirou: %.2f", getPlayer().getRandom()*getPlayer().getDamageMultiplier());
                     System.out.println();
-                    monster.setHp((int) (monster.hp-getPlayer().getRandom()*getPlayer().getDamageMultiplier()));
+                    monster.setHp((int) (monster.getHp()-getPlayer().getRandom()*getPlayer().getDamageMultiplier()));
                 } else {
                     System.out.println("Tirou: " + getPlayer().getRandom());
-                    monster.setHp(monster.hp-getPlayer().getRandom());
+                    monster.setHp(monster.getHp()-getPlayer().getRandom());
                 }
                 if(getPlayer().getXpMultiplier() > 2) {
-                    player.xp += (float) (5 + getPlayer().getXpMultiplier());
+                    player.setXp((float) (5 + getPlayer().getXpMultiplier()));
                     System.out.println("Ganhou: " + 5*getPlayer().getXpMultiplier() + " de XP.");
                     System.out.println("BUFF de XP: ATIVADO");
                 } else {
                     System.out.println("Ganhou: " + 5 + " de xp.");
                     System.out.println("BUFF de XP: DESATIVADO");
                 }
-                System.out.println("Vida do " + monster.getName() + ": " + monster.hp);
+                System.out.println("Vida do " + monster.getName() + ": " + monster.getHp());
                 System.out.println("======================");
             }
         }
